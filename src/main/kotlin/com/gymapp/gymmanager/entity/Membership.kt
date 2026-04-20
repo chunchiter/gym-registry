@@ -1,9 +1,11 @@
 package com.gymapp.gymmanager.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import jakarta.persistence.*
 import java.math.BigDecimal
 import java.time.LocalDate
 
+@JsonIgnoreProperties("hibernateLazyInitializer", "handler")
 @Entity
 @Table(name = "memberships")
 data class Membership(
@@ -12,7 +14,7 @@ data class Membership(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "member_id", nullable = false)
     val member: Member = Member(),
 
