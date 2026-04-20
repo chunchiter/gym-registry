@@ -70,3 +70,6 @@ td.bold { font-weight: 500; }
 .row-inactive td.bold { text-decoration: line-through; }
 .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 1.5rem; }
 
+/* Edit */
+.btn-delete { padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; font-weight: 500; border: none; background: #fee2e2; color: #dc2626; }
+.btn-delete:hover { background: #fecaca; }

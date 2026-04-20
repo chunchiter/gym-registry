@@ -4,6 +4,7 @@ import com.gymapp.gymmanager.entity.Member
 import com.gymapp.gymmanager.repository.MemberRepository
 import com.gymapp.gymmanager.repository.MembershipRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class MemberService(
@@ -43,5 +44,10 @@ class MemberService(
         ))
     }
 
-    fun delete(id: Long) = memberRepository.deleteById(id)
+    @Transactional
+    fun delete(id: Long) {
+        membershipRepository.deleteByMemberId(id)
+        memberRepository.deleteById(id)
+    }
+
 }

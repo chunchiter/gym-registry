@@ -14,4 +14,6 @@ interface MembershipRepository : JpaRepository<Membership, Long> {
 
     @Query("SELECT m FROM Membership m WHERE m.fechaVencimiento BETWEEN :today AND :soon")
     fun findExpiringSoon(today: LocalDate, soon: LocalDate): List<Membership>
+
+    fun deleteByMemberId(memberId: Long)
 }
