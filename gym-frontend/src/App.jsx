@@ -5,6 +5,7 @@ import ModalNewMember from './components/ModalNewMember'
 import ModalRenew from './components/ModalRenew'
 import ModalEdit from './components/ModalEdit'
 import ModalHistorial from './components/ModalHistorial'
+import ModalImport from './components/ModalImport'
 
 export default function App() {
   const [members, setMembers] = useState([])
@@ -15,6 +16,7 @@ export default function App() {
   const [memberToRenew, setMemberToRenew] = useState(null)
   const [memberToEdit, setMemberToEdit] = useState(null)
   const [memberHistorial, setMemberHistorial] = useState(null)
+  const [showImport, setShowImport] = useState(false)
 
   useEffect(() => { fetchMembers() }, [])
 
@@ -75,6 +77,7 @@ export default function App() {
         <div className="header-actions">
           <button className="btn" onClick={() => setShowNuevo(true)}>+ Nuevo miembro</button>
           <button className="btn" onClick={downloadExcel}>Descargar Excel</button>
+          <button className="btn" onClick={() => setShowImport(true)}>Importar Excel</button>
         </div>
       </div>
 
@@ -131,6 +134,7 @@ export default function App() {
       {memberToRenew && <ModalRenew member={memberToRenew} onClose={() => setMemberToRenew(null)} onSave={fetchMembers} />}
       {memberToEdit && <ModalEdit member={memberToEdit} onClose={() => setMemberToEdit(null)} onSave={fetchMembers} />}
       {memberHistorial && <ModalHistorial member={memberHistorial} onClose={() => setMemberHistorial(null)} />}
+      {showImport && <ModalImport onClose={() => setShowImport(false)} onSave={fetchMembers} />}
     </div>
   )
 }
